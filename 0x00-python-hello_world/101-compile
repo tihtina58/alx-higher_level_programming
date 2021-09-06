@@ -1,5 +1,6 @@
 #!/bin/bash
+echo "Compiling $PYFILE ..."
+rm -rf __pycache__
 python3 -m py_compile $PYFILE
-mv __pycache__/*.pyc ./$PYFILE'c'
-chmod +x $PYFILE'c'
-rmdir __pycache__
+mv __pycache__/*.pyc $PYFILE'c'
+rm -rf __pycache__
