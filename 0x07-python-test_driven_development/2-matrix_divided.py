@@ -1,30 +1,42 @@
 #!/usr/bin/python3
-"""
-This is the "2-matrix_divided" module.
-The 2-matrix_divided module supplies one function, matrix_divided(matrix, div).
-"""
+"""Divide a matrix Module"""
 
 
 def matrix_divided(matrix, div):
-    """Divides all elements in the matrix by div"""
-    if type(matrix) is not list:
-        raise TypeError(
-            "matrix must be a matrix (list of lists) of integers/floats")
-    size = None
-    for l in matrix:
-        if type(l) is not list:
-            raise TypeError(
-                "matrix must be a matrix (list of lists) of integers/floats")
-        if size is None:
-            size = len(l)
-        elif size != len(l):
-            raise TypeError("Each row of the matrix must have the same size")
-        for i in l:
-            if type(i) is not int and type(i) is not float:
-                raise TypeError("matrix must be a matrix (list of lists) of \
-integers/floats")
-    if type(div) is not int and type(div) is not float:
+    """function that divides all elements of a matrix.
+       matrix must be a matrix (list of lists) of integers/floats.
+       div must be a number != 0"""
+    len_rows = 0
+    new_matrix = []
+
+    if type(div) not in (float, int):
         raise TypeError("div must be a number")
     if div == 0:
         raise ZeroDivisionError("division by zero")
-    return [[round(i / div, 2) for i in l] for l in matrix]
+
+    try:
+        len_rows = len(matrix[0])
+    except:
+        pass
+
+    if not isinstance(matrix, list) or len(matrix) == 0:
+        raise TypeError("matrix must be a matrix (list of lists) of"
+                        " integers/floats")
+
+    for row in matrix:
+        if not isinstance(row, list) or len(row) == 0:
+            raise TypeError("matrix must be a matrix (list of lists) of"
+                            " integers/floats")
+        if len(row) != len_rows:
+            raise TypeError("Each row of the matrix must have the same size")
+        for element in row:
+            if type(element) not in (int, float):
+                raise TypeError("matrix must be a matrix (list of lists) of"
+                                " integers/floats")
+
+    for row in matrix:
+        current_row = []
+        for element in row:
+            current_row.append(round(element / div, 2))
+        new_matrix.append(current_row)
+    return new_matrix
