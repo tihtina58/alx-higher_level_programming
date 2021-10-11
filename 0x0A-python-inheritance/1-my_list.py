@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-"""Module for class that inherits from list class"""
+'''module for task 1'''
 
 
 class MyList(list):
-    """class that inherits from list class"""
+    """class utilizing list class"""
+
     def print_sorted(self):
-        """prints the list, but sorted (ascending sort)"""
-        list_cpy = self.copy()
-        list_cpy.sort()
-        print(list_cpy)
+        """print sorted list"""
+        res = list.copy(self)
+        list.sort(res)
+        print(res)
