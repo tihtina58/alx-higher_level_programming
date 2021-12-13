@@ -1,3 +1,4 @@
 #!/usr/bin/node
-let msg = process.argv[2] + ' is ' + process.argv[3];
-console.log(msg);
+const firstArgument = process.argv[2];
+const secondArgument = process.argv[3];
+console.log(firstArgument + ' is ' + secondArgument);
