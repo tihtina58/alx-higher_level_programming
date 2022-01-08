@@ -1,8 +1,3 @@
 #!/bin/bash
-# Sends a POST request to a given URL, and displays the body of the response
-curl --data 'email=test%40gmail.com&subject=I+will+always+be+here+for+PLD' "$Terms
-Privacy
-Security
-Status
-Docs
-Cont1"
+# A script POSt Header variable to the URL email, subject
+curl -s -X POST -d "email=test@gmail.com&subject=I will always be here for PLD" "$1"
