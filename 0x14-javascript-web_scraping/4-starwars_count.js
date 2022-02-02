@@ -1,19 +1,12 @@
 #!/usr/bin/node
-
 const request = require('request');
-const url = process.argv[2];
-const wedge = 'https://swapi-api.hbtn.io/api/people/18/';
-request(url, function (error, response, body) {
-  let counter = 0;
-  if (error) {
-    console.log(error);
-  } else {
+request(process.argv[2], function (error, response, body) {
+  if (!error) {
     const results = JSON.parse(body).results;
-    for (let i = 0; i < results.length; i++) {
-      if (results[i].characters.includes(wedge) === true) {
-        counter += 1;
-      }
-    }
+    console.log(results.reduce((count, movie) => {
+      return movie.characters.find((character) => character.endsWith('/18/'))
+        ? count + 1
+        : count;
+    }, 0));
   }
-  console.log(counter);
 });
